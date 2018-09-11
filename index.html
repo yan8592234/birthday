@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<!--设置viewport视口-->
+		<meta name="viewport" content="width=width-device,initial-scale=1.0,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			div{width: 350px;
+				background: #ccc;
+				color: purple;
+				margin: 0 auto;
+				text-align: center;
+				font-size: 18px;
+			}
+			h1{
+				text-align: center;
+				color: purple;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>生日倒计时</h1>
+		
+		<div id="div1"></div><br />
+		<div id="div2"></div><br />
+		<div id="div3"></div><br />
+		<div id="div4"></div><br />
+		<div id="div5"></div><br />
+		<div id="div6"></div><br />
+		<div id="div7"></div><br />
+		<div id="div8"></div><br />
+		<div id="div9"></div><br />
+		<div id="div10"></div><br />
+		<div id="div11"></div><br />
+		
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function countDown(time, fn) {
+				var maxtime = (new Date(time) - new Date()) / 1000; //剩余秒
+
+				var timer = setInterval(function() {
+					if (maxtime >= 0) {
+						var dd = parseInt(maxtime / 60 / 60 / 24, 10); //计算剩余的天数  
+						var hh = parseInt(maxtime / 60 / 60 % 24, 10); //计算剩余的小时数  
+						var mm = parseInt(maxtime / 60 % 60, 10); //计算剩余的分钟数  
+						var ss = parseInt(maxtime % 60, 10); //计算剩余的秒数  
+						hh = checkTime(hh);
+						mm = checkTime(mm);
+						ss = checkTime(ss);
+
+						msg =  dd + "天" + hh + "时" + mm + "分" + ss + "秒";
+						fn(msg);
+						--maxtime;
+					} else {
+						clearInterval(timer);
+						fn("已结束");
+					}
+				}, 1000);
+			}
+
+			function checkTime(i) {
+				if (i < 10) {
+					i = "0" + i;
+				}
+				return i;
+			}
+			
+			
+			
+            countDown('2018-11-24 00:00:00', function (msg) {
+                $('#div1').text('闫清涛的生日倒计时：' + msg);
+            });
+            countDown('2018-12-06 00:00:00', function (msg) {
+                $('#div2').text('曲亦亭的生日倒计时：' +　msg);
+            });
+            countDown('2019-01-26 00:00:00', function (msg) {
+                $('#div3').text('闫成的生日倒计时：' +　msg);
+            });
+            countDown('2019-03-24 00:00:00', function (msg) {
+                $('#div4').text('李桂贤的生日倒计时：' +　msg);
+            });
+            countDown('2018-10-04 00:00:00', function (msg) {
+                $('#div5').text('曲静扬的生日倒计时：' +　msg);
+            });
+            countDown('2019-01-22 00:00:00', function (msg) {
+                $('#div6').text('李海晶的生日倒计时：' +　msg);
+            });
+			 countDown('2019-07-05 00:00:00', function (msg) {
+                $('#div7').text('曲春风的生日倒计时：' +　msg);
+            });
+
+		</script>
+
+	</body>
+
+</html>
